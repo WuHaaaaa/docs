@@ -1,0 +1,27 @@
+{
+  "name": "documents",
+  "version": "1.0.0",
+  "description": "RuanHeng's docs web",
+  "private": true,
+  "scripts": {
+    "dev": "vuepress dev docs --temp .temp",
+    "build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WuHaaaaa/WuHaaaaa.github.io.git"
+  },
+  "author": "RuanHeng",
+  "license": "ISC",
+  "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.7.0",
+    "@vuepress/plugin-google-analytics": "^1.7.0",
+    "@vuepress/plugin-medium-zoom": "^1.7.0",
+    "@vuepress/plugin-pwa": "^1.7.0",
+    "moment": "^2.29.1",
+    "vuepress": "^1.7.0"
+  },
+  "dependencies": {
+    "vuepress-plugin-auto-sidebar": "^1.5.0"
+  }
+}
