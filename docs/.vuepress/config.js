@@ -3,7 +3,7 @@ const navConf = require('./config/navConf.js');
 const headConf = require('./config/headConf.js');
 
 module.exports = {
-  base:"/docs/"
+  base:"/docs/",
   title: '',
   description: '记录记录学到的，用到的',
   head: headConf,

@@ -12,9 +12,9 @@ module.exports = {
     }
   },
   '@vuepress/back-to-top': true,
-  '@vuepress/google-analytics': {
-    'ga': secretKeyConf.ga
-  },
+  // '@vuepress/google-analytics': {
+  //   'ga': secretKeyConf.ga
+  // },
   '@vuepress/medium-zoom': {
     selector: '.content__default img',
   },
@@ -23,9 +23,18 @@ module.exports = {
   },
   "vuepress-plugin-auto-sidebar": {
     titleMode: "default",
-    // titleMap: {
-    //   javascript: "JS 基础",
-    // },
+    titleMap: {
+      "csharp":"C#",
+      javascript: "JavaScript",
+      "dot-net-mvc5":".NET MVC 5",
+      "gRPC":"Grpc",
+      "echarts":"Echarts",
+      "books":"看过的书",
+      "git":"Git",
+      "leetcode":"LeetCode",
+      "toos":"折腾",
+      "ubuntu":"Ubuntu",
+    },
     // collapseList: [
     //   "/frontend/javascript/"
     // ]

@@ -1,5 +1,4 @@
 module.exports = [
- 
   {
     "text": "后端", "items": [
       { "text": ".NET MVC5", "link": "/backend/dot-net-mvc5/" },
@@ -15,6 +14,9 @@ module.exports = [
   {
     "text": "其他", "items": [
       { "text": "看过的书", "link": "/more/books/" },
+      { "text": "折腾", "link": "/more/toos/" },
+      { "text": "Ubuntu", "link": "/more/ubuntu/" },
+      { "text": "Git", "link": "/more/git/" },
       { "text": "LeetCode", "link": "/more/leetcode/" }
     ]
   },
