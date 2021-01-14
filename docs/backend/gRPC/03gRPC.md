@@ -155,6 +155,6 @@ public override async Task<AddPhotoResponse> AddPhoto(IAsyncStreamReader<AddPhot
 
 ![image-20210106232453759.png](https://i.loli.net/2021/01/06/jt1gdaLGImCOP5W.png)
 
-Server端多出一张图片
+Server端多出一张图片，logo.png
 
-![image-20210106232635860.png](https://i.loli.net/2021/01/06/ArdOJ1ocNIKs6vb.png)
+![image-20210114231300734](https://i.loli.net/2021/01/14/T9hKYp8ztuRgUr6.png)

@@ -24,6 +24,7 @@ module.exports = {
   "vuepress-plugin-auto-sidebar": {
     titleMode: "default",
     titleMap: {
+      "guide":"先导",
       "csharp":"C#",
       javascript: "JavaScript",
       "dot-net-mvc5":".NET MVC 5",
