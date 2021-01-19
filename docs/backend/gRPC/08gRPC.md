@@ -94,13 +94,13 @@ title: 客户端证书
 
 + 将`SSL`证书放在`Server`下面，`Self`证书放在`Client`下面，（并设置文件属性：**复制到输出目录>如果较新则复制**）
 
-  ![image-20210118232648802](K:/Blog/docs/.vuepress/public/images/image-20210118232648802.png)
+  ![image-20210118232648802](https://i.loli.net/2021/01/19/sa9RZeoBOuMcyvg.png)
 
 + 然后还剩下一步：`[win]`->搜索`管理用户证书`，打开，框选的就是刚生成的证书
 
   我们需要将`root`证书移动到**受信任的根证书颁发机构**
 
-  ![image-20210118232016945](K:/Blog/docs/.vuepress/public/images/image-20210118232016945.png)
+  ![image-20210118232016945](https://i.loli.net/2021/01/19/dATxJE5BYZMo6Ss.png)
 
 + 找到`Server`端代码
 
@@ -193,7 +193,7 @@ title: 客户端证书
 
 + 运行（出现403，表示认证生效了）
 
-  ![image-20210118234319252](K:/Blog/docs/.vuepress/public/images/image-20210118234319252.png)
+  ![image-20210118234319252](https://i.loli.net/2021/01/19/iZGewgUzJds87Qu.png)
 
 + 添加客户端证书
 
@@ -258,4 +258,4 @@ title: 客户端证书
 
 + 运行
 
-  ![image-20210119231410156](K:/Blog/docs/.vuepress/public/images/image-20210119231410156.png)
+  ![image-20210119231410156](https://i.loli.net/2021/01/19/L8hSovfAmVyUsXN.png)
