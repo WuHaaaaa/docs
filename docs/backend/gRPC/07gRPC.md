@@ -82,7 +82,7 @@ Data Center：类似公司内部的服务器，相关服务器之间采用`grpc`
 
   可以看到，`gRPC`显示未授权，返回状态码是`401`，这表示服务器端的授权认证是生效了的
 
-![image-20210117212823834](K:/Blog/docs/.vuepress/public/images/image-20210117212823834.png)
+![image-20210117212823834](https://i.loli.net/2021/01/17/k4IU5NZbjyeEFtY.png)
 
 ### 接着
 
