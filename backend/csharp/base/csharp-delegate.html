@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>C#委托与事件</title>
+    <meta name="generator" content="VuePress 1.7.0">
+    <link rel="apple-touch-icon" href="/docs/apple-touch-icon.png">
+    <link rel="icon" href="/docs/favicon.ico">
+    <link rel="manifest" href="/docs/manifest.json">
+    <meta name="description" content="学到的 用到的 感兴趣的">
+    <meta name="theme-color" content="#ffffff">
+    
+    <link rel="preload" href="/docs/assets/css/0.styles.f7b3d1c5.css" as="style"><link rel="preload" href="/docs/assets/js/app.ebbf42bd.js" as="script"><link rel="preload" href="/docs/assets/js/2.e91ea41e.js" as="script"><link rel="preload" href="/docs/assets/js/12.1f6b7235.js" as="script"><link rel="preload" href="/docs/assets/js/3.f31d052a.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.b4b51801.js"><link rel="prefetch" href="/docs/assets/js/11.a431a81f.js"><link rel="prefetch" href="/docs/assets/js/13.d9ff6aa4.js"><link rel="prefetch" href="/docs/assets/js/14.f7885770.js"><link rel="prefetch" href="/docs/assets/js/15.17c99732.js"><link rel="prefetch" href="/docs/assets/js/16.71c687bf.js"><link rel="prefetch" href="/docs/assets/js/17.8ad4810f.js"><link rel="prefetch" href="/docs/assets/js/18.fd691143.js"><link rel="prefetch" href="/docs/assets/js/19.afb702b1.js"><link rel="prefetch" href="/docs/assets/js/20.a4e19a04.js"><link rel="prefetch" href="/docs/assets/js/21.8b804b37.js"><link rel="prefetch" href="/docs/assets/js/22.b82986ab.js"><link rel="prefetch" href="/docs/assets/js/23.7917dd64.js"><link rel="prefetch" href="/docs/assets/js/24.2b2e5ffb.js"><link rel="prefetch" href="/docs/assets/js/25.48503e12.js"><link rel="prefetch" href="/docs/assets/js/26.efa1f7d6.js"><link rel="prefetch" href="/docs/assets/js/27.b7c67ff6.js"><link rel="prefetch" href="/docs/assets/js/28.43e104a6.js"><link rel="prefetch" href="/docs/assets/js/29.4d280c4e.js"><link rel="prefetch" href="/docs/assets/js/30.b22c2f67.js"><link rel="prefetch" href="/docs/assets/js/31.ad804432.js"><link rel="prefetch" href="/docs/assets/js/32.1099049b.js"><link rel="prefetch" href="/docs/assets/js/33.3dd5e29c.js"><link rel="prefetch" href="/docs/assets/js/34.98d646da.js"><link rel="prefetch" href="/docs/assets/js/35.8f1d466f.js"><link rel="prefetch" href="/docs/assets/js/36.bbed7c7a.js"><link rel="prefetch" href="/docs/assets/js/37.777ee62c.js"><link rel="prefetch" href="/docs/assets/js/38.934e506a.js"><link rel="prefetch" href="/docs/assets/js/39.2e252bff.js"><link rel="prefetch" href="/docs/assets/js/4.e3a22a46.js"><link rel="prefetch" href="/docs/assets/js/40.659d935c.js"><link rel="prefetch" href="/docs/assets/js/41.f2c2f7ee.js"><link rel="prefetch" href="/docs/assets/js/42.619321e9.js"><link rel="prefetch" href="/docs/assets/js/43.42d4eb10.js"><link rel="prefetch" href="/docs/assets/js/44.cb7ff5d2.js"><link rel="prefetch" href="/docs/assets/js/45.6e09cc4a.js"><link rel="prefetch" href="/docs/assets/js/46.dea94a79.js"><link rel="prefetch" href="/docs/assets/js/47.57b2831e.js"><link rel="prefetch" href="/docs/assets/js/48.8e723307.js"><link rel="prefetch" href="/docs/assets/js/49.e5c8403c.js"><link rel="prefetch" href="/docs/assets/js/5.1f4073b2.js"><link rel="prefetch" href="/docs/assets/js/50.d6e3c8e4.js"><link rel="prefetch" href="/docs/assets/js/51.c3667e29.js"><link rel="prefetch" href="/docs/assets/js/52.bb18881d.js"><link rel="prefetch" href="/docs/assets/js/53.be51bb0b.js"><link rel="prefetch" href="/docs/assets/js/54.840b7a76.js"><link rel="prefetch" href="/docs/assets/js/55.2fa45451.js"><link rel="prefetch" href="/docs/assets/js/56.5494f328.js"><link rel="prefetch" href="/docs/assets/js/57.38d0acdd.js"><link rel="prefetch" href="/docs/assets/js/58.6ebf3d7a.js"><link rel="prefetch" href="/docs/assets/js/59.d3d76087.js"><link rel="prefetch" href="/docs/assets/js/6.fbc0230d.js"><link rel="prefetch" href="/docs/assets/js/60.967b85b2.js"><link rel="prefetch" href="/docs/assets/js/61.43942bea.js"><link rel="prefetch" href="/docs/assets/js/62.2448d643.js"><link rel="prefetch" href="/docs/assets/js/63.2a2d7f97.js"><link rel="prefetch" href="/docs/assets/js/64.42a5680c.js"><link rel="prefetch" href="/docs/assets/js/65.12f7634e.js"><link rel="prefetch" href="/docs/assets/js/66.83f182f5.js"><link rel="prefetch" href="/docs/assets/js/67.791074e3.js"><link rel="prefetch" href="/docs/assets/js/68.f57897f8.js"><link rel="prefetch" href="/docs/assets/js/7.170c203a.js"><link rel="prefetch" href="/docs/assets/js/8.280ea156.js"><link rel="prefetch" href="/docs/assets/js/9.85c7d6b8.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.f7b3d1c5.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><img src="/docs/favicon.ico" alt="" class="logo"> <!----></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><span class="title">后端</span> <span class="arrow down"></span></button> <button type="button" aria-label="后端" class="mobile-dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/backend/dot-net-mvc5/" class="nav-link">
+  .NET MVC5
+</a></li><li class="dropdown-item"><!----> <a href="/docs/backend/gRPC/" class="nav-link">
+  Grpc
+</a></li><li class="dropdown-item"><!----> <a href="/docs/backend/container/" class="nav-link">
+  容器
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/frontend/javascript/" class="nav-link">
+  JavaScript
+</a></li><li class="dropdown-item"><!----> <a href="/docs/frontend/echarts/" class="nav-link">
+  Echarts
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/more/books/" class="nav-link">
+  看过的书
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more/toos/" class="nav-link">
+  折腾
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more/ubuntu/" class="nav-link">
+  Ubuntu
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more/git/" class="nav-link">
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more/leetcode/" class="nav-link">
+  LeetCode
+</a></li></ul></div></div> <a href="https://github.com/WuHaaaaa/WuHaaaaa.github.io" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><span class="title">后端</span> <span class="arrow down"></span></button> <button type="button" aria-label="后端" class="mobile-dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/backend/dot-net-mvc5/" class="nav-link">
+  .NET MVC5
+</a></li><li class="dropdown-item"><!----> <a href="/docs/backend/gRPC/" class="nav-link">
+  Grpc
+</a></li><li class="dropdown-item"><!----> <a href="/docs/backend/container/" class="nav-link">
+  容器
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/frontend/javascript/" class="nav-link">
+  JavaScript
+</a></li><li class="dropdown-item"><!----> <a href="/docs/frontend/echarts/" class="nav-link">
+  Echarts
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/more/books/" class="nav-link">
+  看过的书
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more/toos/" class="nav-link">
+  折腾
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more/ubuntu/" class="nav-link">
+  Ubuntu
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more/git/" class="nav-link">
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more/leetcode/" class="nav-link">
+  LeetCode
+</a></li></ul></div></div> <a href="https://github.com/WuHaaaaa/WuHaaaaa.github.io" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>base</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/backend/csharp/base/csharp-delegate.html" aria-current="page" class="active sidebar-link">C#委托与事件</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/backend/csharp/base/csharp-delegate.html#c-委托与事件" class="sidebar-link">C#委托与事件</a></li></ul></li><li><a href="/docs/backend/csharp/base/csharp-thread.html" class="sidebar-link">C# 异步编程</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="c-委托与事件"><a href="#c-委托与事件" class="header-anchor">#</a> C#委托与事件</h2> <hr> <p>参考：<a href="https://www.cnblogs.com/JimmyZhang/archive/2007/09/23/903360.html" target="_blank" rel="noopener noreferrer">C# 中的委托和事件<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>参考：<a href="https://www.cnblogs.com/jackson0714/p/5111347.html" target="_blank" rel="noopener noreferrer">不惧面试：委托<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <hr> <p>就像文中说的一样</p> <blockquote><p>委托 和 事件在 .Net Framework中的应用非常广泛，然而，较好地理解委托和事件对很多接触C#时间不长的人来说并不容易。它们就像是一道槛儿，过了这个槛的人，觉得真是太容易了，而没有过去的人每次见到委托和事件就觉得心里别（biè）得慌，混身不自在。</p></blockquote> <h3 id="符合-net-framework-的规范的事件和委托"><a href="#符合-net-framework-的规范的事件和委托" class="header-anchor">#</a> 符合 .Net Framework 的规范的事件和委托</h3> <p>我们先搞懂 .Net Framework的编码规范：</p> <ul><li>委托类型的名称都应该以<code>EventHandler</code>结束。</li> <li>委托的原型定义：有一个<code>void</code>返回值，并接受两个输入参数：一个<code>Object</code> 类型，一个 <code>EventArgs</code>类型(或继承自<code>EventArgs</code>)。</li> <li>事件的命名为 委托去掉 <code>EventHandler</code>之后剩余的部分。</li> <li>继承自<code>EventArgs</code>的类型应该以<code>EventArgs</code>结尾。</li> <li>再做一下说明：
+<ol><li>委托声明原型中的<code>Object</code>类型的参数代表了<code>Subject</code>，也就是监视对象，在本例中是<code>Heater</code>(热水器)。回调函数(比如<code>Alarm</code>的<code>MakeAlert</code>)可以通过它访问触发事件的对象(<code>Heater</code>)。</li> <li><code>EventArgs</code>对象包含了<code>Observer</code>所感兴趣的数据，在本例中是<code>temperature</code>。</li></ol></li></ul> <div class="language-csharp extra-class"><pre class="language-csharp"><code><span class="token keyword">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Collections<span class="token punctuation">.</span>Generic</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Text</span><span class="token punctuation">;</span>
+
+<span class="token keyword">namespace</span> <span class="token namespace">Delegate</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 热水器</span>
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Heater</span> <span class="token punctuation">{</span>
+        <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">int</span></span> temperature<span class="token punctuation">;</span>
+        <span class="token keyword">public</span> <span class="token class-name"><span class="token keyword">string</span></span> type <span class="token operator">=</span> <span class="token string">&quot;RealFire 001&quot;</span><span class="token punctuation">;</span>       <span class="token comment">// 添加型号作为演示</span>
+        <span class="token keyword">public</span> <span class="token class-name"><span class="token keyword">string</span></span> area <span class="token operator">=</span> <span class="token string">&quot;China Xian&quot;</span><span class="token punctuation">;</span>         <span class="token comment">// 添加产地作为演示</span>
+        <span class="token comment">//声明委托</span>
+        <span class="token keyword">public</span> <span class="token keyword">delegate</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">BoiledEventHandler</span><span class="token punctuation">(</span><span class="token class-name">Object</span> sender<span class="token punctuation">,</span> <span class="token class-name">BoiledEventArgs</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">public</span> <span class="token keyword">event</span> <span class="token class-name">BoiledEventHandler</span> Boiled<span class="token punctuation">;</span> <span class="token comment">//声明事件</span>
+
+        <span class="token comment">// 定义BoiledEventArgs类，传递给Observer所感兴趣的信息</span>
+        <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BoiledEventArgs</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">EventArgs</span></span> <span class="token punctuation">{</span>
+            <span class="token keyword">public</span> <span class="token keyword">readonly</span> <span class="token class-name"><span class="token keyword">int</span></span> temperature<span class="token punctuation">;</span>
+            <span class="token keyword">public</span> <span class="token function">BoiledEventArgs</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> temperature<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span>temperature <span class="token operator">=</span> temperature<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// 可以供继承自 Heater 的类重写，以便继承类拒绝其他对象对它的监视</span>
+        <span class="token keyword">protected</span> <span class="token keyword">virtual</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">OnBoiled</span><span class="token punctuation">(</span><span class="token class-name">BoiledEventArgs</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>Boiled <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 如果有对象注册</span>
+                <span class="token function">Boiled</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 调用所有注册对象的方法</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// 烧水。</span>
+        <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">BoilWater</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">100</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                temperature <span class="token operator">=</span> i<span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>temperature <span class="token operator">&gt;</span> <span class="token number">95</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token comment">//建立BoiledEventArgs 对象。</span>
+                    <span class="token class-name">BoiledEventArgs</span> e <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">BoiledEventArgs</span><span class="token punctuation">(</span>temperature<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token function">OnBoiled</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 调用 OnBolied方法</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 警报器</span>
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Alarm</span> <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">MakeAlert</span><span class="token punctuation">(</span><span class="token class-name">Object</span> sender<span class="token punctuation">,</span> <span class="token class-name">Heater<span class="token punctuation">.</span>BoiledEventArgs</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Heater</span> heater <span class="token operator">=</span> <span class="token punctuation">(</span>Heater<span class="token punctuation">)</span>sender<span class="token punctuation">;</span>     <span class="token comment">//这里是不是很熟悉呢？</span>
+            <span class="token comment">//访问 sender 中的公共字段</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Alarm：{0} - {1}: &quot;</span><span class="token punctuation">,</span> heater<span class="token punctuation">.</span>area<span class="token punctuation">,</span> heater<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Alarm: 嘀嘀嘀，水已经 {0} 度了：&quot;</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span>temperature<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 显示器</span>
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Display</span> <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">ShowMsg</span><span class="token punctuation">(</span><span class="token class-name">Object</span> sender<span class="token punctuation">,</span> <span class="token class-name">Heater<span class="token punctuation">.</span>BoiledEventArgs</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>   <span class="token comment">//静态方法</span>
+            <span class="token class-name">Heater</span> heater <span class="token operator">=</span> <span class="token punctuation">(</span>Heater<span class="token punctuation">)</span>sender<span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Display：{0} - {1}: &quot;</span><span class="token punctuation">,</span> heater<span class="token punctuation">.</span>area<span class="token punctuation">,</span> heater<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Display：水快烧开了，当前温度：{0}度。&quot;</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span>temperature<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">class</span> <span class="token class-name">Program</span> <span class="token punctuation">{</span>
+        <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Heater</span> heater <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Heater</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">Alarm</span> alarm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Alarm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            heater<span class="token punctuation">.</span>Boiled <span class="token operator">+=</span> alarm<span class="token punctuation">.</span>MakeAlert<span class="token punctuation">;</span>   <span class="token comment">//注册方法</span>
+            heater<span class="token punctuation">.</span>Boiled <span class="token operator">+=</span> <span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token constructor-invocation class-name">Alarm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>MakeAlert<span class="token punctuation">;</span>      <span class="token comment">//给匿名对象注册方法</span>
+            heater<span class="token punctuation">.</span>Boiled <span class="token operator">+=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Heater<span class="token punctuation">.</span>BoiledEventHandler</span><span class="token punctuation">(</span>alarm<span class="token punctuation">.</span>MakeAlert<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">//也可以这么注册</span>
+            heater<span class="token punctuation">.</span>Boiled <span class="token operator">+=</span> Display<span class="token punctuation">.</span>ShowMsg<span class="token punctuation">;</span>       <span class="token comment">//注册静态方法</span>
+
+            heater<span class="token punctuation">.</span><span class="token function">BoilWater</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//烧水，会自动调用注册过对象的方法</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//输出为：</span>
+<span class="token comment">//Alarm：China Xian - RealFire 001:</span>
+<span class="token comment">//Alarm: 嘀嘀嘀，水已经 96 度了：</span>
+<span class="token comment">//Alarm：China Xian - RealFire 001:</span>
+<span class="token comment">//Alarm: 嘀嘀嘀，水已经 96 度了：</span>
+<span class="token comment">//Alarm：China Xian - RealFire 001:</span>
+<span class="token comment">//Alarm: 嘀嘀嘀，水已经 96 度了：</span>
+<span class="token comment">//Display：China Xian - RealFire 001:</span>
+<span class="token comment">//Display：水快烧开了，当前温度：96度。</span>
+</code></pre></div><h3 id="为什么使用事件-而不是委托"><a href="#为什么使用事件-而不是委托" class="header-anchor">#</a> 为什么使用事件，而不是委托</h3> <p><strong>好的例子</strong></p> <div class="language-csharp extra-class"><pre class="language-csharp"><code>
+<span class="token keyword">class</span> <span class="token class-name">Program</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> args<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 1. 符合规范，委托不对外公开，而是使用事件来注册</span>
+        <span class="token class-name">Publisher</span> pub <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Publisher</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Subscriber</span> sub <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Subscriber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pub<span class="token punctuation">.</span>NumberChanged <span class="token operator">+=</span> sub<span class="token punctuation">.</span>OnNumberChanged<span class="token punctuation">;</span>
+        pub<span class="token punctuation">.</span><span class="token function">ChangedNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">delegate</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">NumberChangedEventHandler</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">object</span></span> sender<span class="token punctuation">,</span> <span class="token class-name">NumberChangedEventArgs</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/// &lt;summary&gt;</span>
+<span class="token comment">/// 发布者</span>
+<span class="token comment">/// &lt;/summary&gt;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Publisher</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">event</span> <span class="token class-name">NumberChangedEventHandler</span> NumberChanged<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">int</span></span> Num <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">ChangedNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Num<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token class-name">NumberChangedEventArgs</span> e <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">NumberChangedEventArgs</span><span class="token punctuation">(</span>Num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        NumberChanged<span class="token punctuation">?.</span><span class="token function">Invoke</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">NumberChangedEventArgs</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">EventArgs</span></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token class-name"><span class="token keyword">int</span></span> Num<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">NumberChangedEventArgs</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> num<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>Num <span class="token operator">=</span> num<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">/// &lt;summary&gt;</span>
+<span class="token comment">/// 订阅者</span>
+<span class="token comment">/// &lt;/summary&gt;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Subscriber</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">//符合规范</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">OnNumberChanged</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">object</span></span> sender<span class="token punctuation">,</span> <span class="token class-name">NumberChangedEventArgs</span> e<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;The number changed to </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">e<span class="token punctuation">.</span>Num</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>坏的例子</strong></p> <div class="language-csharp extra-class"><pre class="language-csharp"><code><span class="token keyword">class</span> <span class="token class-name">Program</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> args<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 2. 不符合规范，委托对外部公开，客户端（Main方法）也能随意调用委托</span>
+        <span class="token class-name">Publisher</span> pub <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Publisher</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Subscriber</span> sub <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Subscriber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pub<span class="token punctuation">.</span>NumberChanged <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">NumberChangedEventHandler</span><span class="token punctuation">(</span>sub<span class="token punctuation">.</span>ChangedNumber<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// pub.ChangedNum();</span>
+
+        pub<span class="token punctuation">.</span><span class="token function">NumberChanged</span><span class="token punctuation">(</span>pub<span class="token punctuation">.</span>Num<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//客户端随意调用，不符合封装规范</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">public</span> <span class="token keyword">delegate</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">NumberChangedEventHandler</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> num<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">//定义委托</span>
+
+<span class="token comment">/// &lt;summary&gt;</span>
+<span class="token comment">/// 发布者</span>
+<span class="token comment">/// &lt;/summary&gt;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Publisher</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// public event NumberChangedEventHandler NumberChanged;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">NumberChangedEventHandler</span> NumberChanged<span class="token punctuation">;</span>	<span class="token comment">//声明一个委托</span>
+    <span class="token keyword">public</span> <span class="token class-name"><span class="token keyword">int</span></span> Num <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">ChangedNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Num<span class="token operator">++</span><span class="token punctuation">;</span>
+        NumberChanged<span class="token punctuation">?.</span><span class="token function">Invoke</span><span class="token punctuation">(</span>Num<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">//委托调用</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> 
+
+<span class="token comment">/// &lt;summary&gt;</span>
+<span class="token comment">/// 订阅者</span>
+<span class="token comment">/// &lt;/summary&gt;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Subscriber</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">//不符合规范</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">ChangedNumber</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> num<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;The number changed to </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">num</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><h3 id="一些注意"><a href="#一些注意" class="header-anchor">#</a> 一些注意：</h3> <ul><li><p>委托其实就是一个类<code>Class</code>，在编译的时候，委托就会编译成类，所以<strong>任何声明类的地方都可以声明委托</strong></p></li> <li><p>用<code>+=</code>、<code>-=</code>、可以方便的对委托进行多次方法绑定，绑定的方法将依次调用，不过使用前，需要对委托用<code>=</code>进行赋值</p></li> <li><p>事件其实就是对一个声明了的委托进行的封装，并且编译出来是私有成员</p> <p>事件为什么是私有的：对调用来说，私有的更安全，更符合规范</p> <p>在设计模式观察者模式中，<strong>事件应由事件发布者触发，而不是客户端触发</strong></p> <p>如果是委托，则客户端也能访问到相应变量</p></li> <li><p>**NOTE：**这里还有一个约定俗称的规定，就是订阅事件的方法的命名，通常为“On事件名”，比如这里的<code>OnNumberChanged</code>。</p></li> <li><p>为什么委托大多返回<code>void</code>?</p> <ul><li>委托可以提供多个订阅注册，若有返回值，结果就是后面返回值将前面返回覆盖，实际只获得了最后一个返回值</li> <li>订阅者、发布者是松耦合的，发布者不关心谁订阅了它，所以一般是不用返回值的</li></ul></li></ul></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/WuHaaaaa/WuHaaaaa.github.io/edit/master/docs/backend/csharp/base/csharp-delegate.md" target="_blank" rel="noopener noreferrer">编辑文档</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2021年3月28日星期日凌晨1点50分</span></div></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/docs/backend/csharp/base/csharp-thread.html">
+        C# 异步编程
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/docs/assets/js/app.ebbf42bd.js" defer></script><script src="/docs/assets/js/2.e91ea41e.js" defer></script><script src="/docs/assets/js/12.1f6b7235.js" defer></script><script src="/docs/assets/js/3.f31d052a.js" defer></script>
+  </body>
+</html>
