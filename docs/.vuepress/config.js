@@ -5,7 +5,7 @@ const headConf = require('./config/headConf.js');
 module.exports = {
   base:"/docs/",
   title: '',
-  description: '记录记录学到的，用到的',
+  description: '学到的 用到的 感兴趣的',
   head: headConf,
   plugins: pluginConf,
   themeConfig: {

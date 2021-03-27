@@ -2,7 +2,6 @@
 home: true
 heroImage: /app.png
 heroText: Infinity
-tagline: 无限，意为潜力无限
 actionText: 进入笔记 →
 actionLink: /guide/
 ---
